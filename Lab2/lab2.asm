@@ -1,0 +1,31 @@
+.MODEL SMALL
+.STACK 100H  
+
+.DATA
+ST1 DB 'CSE341$'  
+
+.CODE
+MAIN PROC
+
+;initialize ds
+MOV AX,@DATA
+MOV DS,AX
+
+;enter your code here
+MOV AH,1    ;INPUT CHARACTER
+INT 21H     ;AH=30+CHARACTER                     
+
+MOV AH,2    ;OUTPUT CHARACTER
+MOV DL,'L'  ;STORE IN DL
+INT 21H
+
+MOV AH,9    ;OUTPUT STRING
+LEA DX,ST1
+INT 21H    
+
+;exit to DOS
+MOV AX,4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN
